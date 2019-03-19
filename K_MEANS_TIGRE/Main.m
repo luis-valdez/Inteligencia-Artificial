@@ -7,14 +7,14 @@ I(:,:,2)= I1(:,:,2);
 I(:,:,3)= I1(:,:,3);
 
 s=size(I);
-new_image=zeros(s);
 num_rows= s(1); 
 num_cols=s(2);
 num_elems = num_rows * num_cols;
+K=5;
 
 %Convertir a vector la matriz con la imagen
 A = I(:);
-%Hacer un vector para cada color
+%Crear un vector para cada color
 Red = A(1:num_elems);
 Green = A(num_elems+1 : num_elems*2);
 Blue = A( (num_elems*2 + 1) : num_elems*3 );
@@ -23,5 +23,11 @@ Features = Create_Features(num_elems,num_rows,Red,Blue,Green);
 
 Centroids=init_centroids(Feature_Norm, K, num_elems);
 Asignacion = KMEANS(Centroids,Feature_Norm);
+CentroidsDenormalized = DenormalizeCentroids(Centroids,Features);
+new_image = Create_New_Image(I, Asignacion, CentroidsDenormalized,num_rows);
+NI=uint8(new_image);
+figure(1);
+imshow(NI);
+
 
 
