@@ -1,4 +1,4 @@
-I1=imread('atardecer.jpg');
+I1=imread('morra.jpg');
 s=size(I1);
 I=zeros(s(1), s(2), 3);
 % Convertir la imagen a modo matriz 3D
