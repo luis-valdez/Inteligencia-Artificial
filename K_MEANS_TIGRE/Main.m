@@ -10,7 +10,8 @@ s=size(I);
 num_rows= s(1); 
 num_cols=s(2);
 num_elems = num_rows * num_cols;
-K=5;
+K=9;
+w=0;
 
 %Convertir a vector la matriz con la imagen
 A = I(:);
@@ -20,7 +21,7 @@ Green = A(num_elems+1 : num_elems*2);
 Blue = A( (num_elems*2 + 1) : num_elems*3 );
 
 Features = Create_Features(num_elems,num_rows,Red,Blue,Green);
-Features_Norm = normalize_matrix(Features);
+Features_Norm = normalize_matrix(Features,w);
 Centroids=init_centroids(Features_Norm, K, num_elems);
 Asignacion = KMEANS(Centroids,Features_Norm);
 CentroidsDenormalized = DenormalizeCentroids(Centroids,Features);

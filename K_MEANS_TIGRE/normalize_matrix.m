@@ -1,4 +1,4 @@
-function [Feature_Norm] = normalize_matrix(Features)
+function [Feature_Norm] = normalize_matrix(Features,w)
 Feature_Norm=zeros(size(Features));
 
 for i=1 : 5
@@ -10,3 +10,6 @@ for i=1 : 5
         Feature_Norm(j,i) = (X - Xmin) / (Xmax - Xmin);
     end
 end
+
+Feature_Norm(:,1) = Feature_Norm(:,1) * w;
+Feature_Norm(:,2) = Feature_Norm(:,2) * w;
